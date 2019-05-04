@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "emcbuilderswand:wandemc",
+    "data": 0
+  },
+  "pattern": [
+    "  p",
+    " s ",
+    "s  "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "s": {
+      "item": "projecte:item.pe_klein_star",
+      "data": 0
+    },
+    "p": {
+      "item": "projecte:item.pe_philosophers_stone"
+    }
+  }
+}

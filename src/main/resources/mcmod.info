@@ -1,0 +1,21 @@
+[
+  {
+    "modid": "emcbuilderswand",
+    "name": "EMC Builder's Wand",
+    "description": "Adds a builder's wand that uses EMC instead of items.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "FusionLord"
+    ],
+    "credits": "",
+    "logoFile": "assets/betterbuilderswands/textures/items/wandemc.png",
+    "screenshots": [],
+    "dependencies": [
+      "betterbuilderswands",
+      "projecte"
+    ]
+  }
+]
