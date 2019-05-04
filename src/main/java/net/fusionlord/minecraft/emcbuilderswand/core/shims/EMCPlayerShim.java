@@ -28,7 +28,8 @@ public class EMCPlayerShim extends BasicPlayerShim {
     @Override
     public int countItems(ItemStack itemStack) {
         long cost = emcProxy.getValue(itemStack);
-        int amount = MathHelper.clamp((int) (knowledge.getEmc() / cost), 0, 1024);
+        if (cost <= 0) return 0;
+        int amount = MathHelper.clamp((int) (knowledge.getEmc() / cost), 0, EMCBuildersWandConfig.maxBuild);
         return hasKnowledge(itemStack) ? amount : 0;
     }
 

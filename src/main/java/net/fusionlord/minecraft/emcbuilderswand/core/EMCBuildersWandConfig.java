@@ -14,6 +14,10 @@ public class EMCBuildersWandConfig {
     @Config.Name("Require Knowledge")
     public static boolean needsKnowledge;
 
+    @Config.Comment("Maximum amount of blocks to build.")
+    @Config.Name("Require Knowledge")
+    public static int maxBuild = 1024;
+
     @SubscribeEvent
     public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
         if (event.getModID().equals(EMCBuildersWand.MODID)) ConfigManager.sync(event.getModID(), Config.Type.INSTANCE);
