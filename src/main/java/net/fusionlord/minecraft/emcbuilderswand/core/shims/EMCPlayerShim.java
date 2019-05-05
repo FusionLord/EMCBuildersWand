@@ -8,7 +8,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
 import portablejim.bbw.shims.BasicPlayerShim;
 
 public class EMCPlayerShim extends BasicPlayerShim {
@@ -27,26 +26,27 @@ public class EMCPlayerShim extends BasicPlayerShim {
 
     @Override
     public int countItems(ItemStack itemStack) {
-        long cost = emcProxy.getValue(itemStack);
-        if (cost <= 0) return 0;
-        int amount = MathHelper.clamp((int) (knowledge.getEmc() / cost), 0, EMCBuildersWandConfig.maxBuild);
-        return hasKnowledge(itemStack) ? amount : 0;
+        return emcProxy.hasValue(itemStack) && hasKnowledge(itemStack) ? (int) (knowledge.getEmc() / emcProxy.getValue(itemStack)) : 0;
     }
 
     @Override
     public boolean useItem(ItemStack itemStack) {
-        long prev = knowledge.getEmc();
-        long cost = emcProxy.getValue(itemStack);
-        knowledge.setEmc(prev - cost);
-        knowledge.sync((EntityPlayerMP) getPlayer());
-        return prev == knowledge.getEmc() + cost && hasKnowledge(itemStack);
+        if (hasKnowledge(itemStack) && canAfford(itemStack)) {
+            long emc = knowledge.getEmc();
+            long cost = ProjectEAPI.getEMCProxy().getValue(itemStack);
+            knowledge.setEmc(emc - cost);
+            knowledge.sync((EntityPlayerMP) getPlayer());
+            return true;
+        }
+        return false;
+    }
+
+    private boolean canAfford(ItemStack itemStack) {
+        return knowledge.getEmc() > emcProxy.getValue(itemStack);
     }
 
     @Override
     public ItemStack getNextItem(Block block, int meta) {
-        double emc = knowledge.getEmc();
-        double cost = emcProxy.getValue(block);
-        ItemStack stack = new ItemStack(block, 1, meta);
-        return (emc < cost && hasKnowledge(stack)) ? ItemStack.EMPTY : stack;
+        return new ItemStack(block, 1, meta);
     }
 }
