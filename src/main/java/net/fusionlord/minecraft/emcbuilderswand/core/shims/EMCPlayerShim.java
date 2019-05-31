@@ -15,7 +15,7 @@ public class EMCPlayerShim extends BasicPlayerShim {
     private IEMCProxy emcProxy;
 
     private boolean hasKnowledge(ItemStack stack) {
-        return EMCBuildersWandConfig.needsKnowledge && knowledge.hasKnowledge(stack);
+        return !EMCBuildersWandConfig.needsKnowledge || knowledge.hasKnowledge(stack);
     }
 
     public EMCPlayerShim(EntityPlayer player) {
