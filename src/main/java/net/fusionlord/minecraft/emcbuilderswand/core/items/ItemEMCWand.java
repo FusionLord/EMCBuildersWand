@@ -24,7 +24,7 @@ import java.util.List;
 public class ItemEMCWand extends ItemUnrestrictedWand {
     public ItemEMCWand() {
         super(new EMCWand(), "", null);
-        this.setTranslationKey("emcbuilderswand.wandemc");
+        this.setUnlocalizedName("emcbuilderswand.wandemc");
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ItemEMCWand extends ItemUnrestrictedWand {
             };
             int i = 0;
             String s;
-            while (I18n.hasKey(s = getTranslationKey().concat(".tooltip.").concat(Integer.toString(i))))
+            while (I18n.hasKey(s = getUnlocalizedName().concat(".tooltip.").concat(Integer.toString(i))))
                 tooltip.add((flagIn == ITooltipFlag.TooltipFlags.ADVANCED ? "Debug: " + i : " ") + I18n.format(s, data[i++]));
         }
     }

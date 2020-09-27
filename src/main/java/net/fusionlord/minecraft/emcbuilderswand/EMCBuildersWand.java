@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class EMCBuildersWand {
     public static final String MODID = "emcbuilderswand";
 
-    private static Item wandEmc = new ItemEMCWand().setRegistryName("emcbuilderswand:wandemc");
+    private static final Item wandEmc = new ItemEMCWand().setRegistryName("emcbuilderswand:wandemc");
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {

@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import portablejim.bbw.shims.BasicPlayerShim;
 
 public class EMCPlayerShim extends BasicPlayerShim {
-    private IKnowledgeProvider knowledge;
-    private IEMCProxy emcProxy;
+    private final IKnowledgeProvider knowledge;
+    private final IEMCProxy emcProxy;
 
     private boolean hasKnowledge(ItemStack stack) {
         return !EMCBuildersWandConfig.needsKnowledge || knowledge.hasKnowledge(stack);
@@ -42,7 +42,7 @@ public class EMCPlayerShim extends BasicPlayerShim {
     }
 
     private boolean canAfford(ItemStack itemStack) {
-        return knowledge.getEmc() > emcProxy.getValue(itemStack);
+        return knowledge.getEmc() >= emcProxy.getValue(itemStack);
     }
 
     @Override

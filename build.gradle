@@ -1,6 +1,6 @@
 project(":emcbuilderswand") {
     dependencies {
-        deobfCompile "better-builders-wands:BetterBuildersWands:${bbw_version}"
-        deobfCompile "projecte:ProjectE:${pe_version}"
+        compile "better-builders-wands:BetterBuildersWands:${bbw_version}"
+        compile "projecte:ProjectE:${pe_version}"
     }
 }
